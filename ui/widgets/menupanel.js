@@ -30,7 +30,7 @@ MENUPANEL.create = (function(x, y, w, h)
             },
             function() {return "file"}),
         // The simulation mode button
-        BUTTON.create(x+64, y, (w-64)/3, h,
+        BUTTON.create(x+64, y, (w-64)/4, h,
             function(mouseButton) {
                 // When the button is pressed, deselect any spring or mass that
                 // may be currently selected.  (If you don't do this, you might
@@ -64,7 +64,7 @@ MENUPANEL.create = (function(x, y, w, h)
             },
             MODEL.instance.mode),
         // The wave mode button
-        BUTTON.create(x+(w-64)/3+64, y, (w-64)/3, h,
+        BUTTON.create(x+(w-64)/4+64, y, (w-64)/4, h,
             function(mouseButton) {
                 // When the button is pressed, forget which wall was most
                 // recently hit by a auto-reversing model, so it will reverse
@@ -99,7 +99,7 @@ MENUPANEL.create = (function(x, y, w, h)
             },
             MODEL.instance.waveMode),
         // The gravity button
-        BUTTON.create(x+2*(w-64)/3+64, y, (w-64)/3, h,
+        BUTTON.create(x+2*(w-64)/4+64, y, (w-64)/4, h,
             function(mouseButton) {
                 switch (MODEL.instance.gravityDirection())
                 {
@@ -121,7 +121,26 @@ MENUPANEL.create = (function(x, y, w, h)
 
                 }
             },
-            MODEL.instance.gravityDirection)
+            MODEL.instance.gravityDirection),
+		// The mass type button
+		BUTTON.create(x+3*(w-64)/4+64, y, (w-64)/4, h,
+            function(mouseButton) {
+                switch (MODEL.instance.massType())
+                {
+                case MODEL.MassTypes.FREE:
+                    MODEL.instance.massType((mouseButton == 0)?
+                        MODEL.MassTypes.FIXED :
+                        MODEL.MassTypes.FIXED);
+                    break;
+                case MODEL.MassTypes.FIXED:
+                    MODEL.instance.massType((mouseButton == 0)?
+                        MODEL.MassTypes.FREE :
+                        MODEL.MassTypes.FREE);
+                    break;
+
+                }
+            },
+            MODEL.instance.massType)
     ];
 // public
     // Accessors

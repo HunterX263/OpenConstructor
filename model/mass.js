@@ -12,6 +12,8 @@ MASS.create = (function(s, isFreeMass)
 // private
     // true if this is a free mass, false if it is a fixed mass
     var _free = (isFreeMass == undefined)? true : isFreeMass;
+	// true if currently being dragged by the player (used by physics)
+	var _dragging = false;
     // position VECTOR (in meters)
     var _s = s;
     // velocity VECTOR (in m/s)
@@ -36,13 +38,22 @@ MASS.create = (function(s, isFreeMass)
         }
         return _free;
     }
+	function _isDragging(isDragging)
+	{
+		if (isDragging !== undefined)
+		{
+			_dragging = isDragging;
+		}
+		return _dragging;
+	}
     return {
         s: _s,
         v: _v,
         a: _a,
         f: _f,
         m: __m,
-        isFreeMass: _isFreeMass
+        isFreeMass: _isFreeMass,
+		isDragging: _isDragging
     }
 });
 
@@ -55,5 +66,6 @@ MASS.isMass = function(candidate)
     // "!!" is an ugly hack that coerces the return value to true or false.
     return (candidate !== undefined) && (candidate !== null) &&
            !!(candidate.s && candidate.v && candidate.a && candidate.v &&
-           candidate.f && candidate.m && candidate.isFreeMass);
+           candidate.f && candidate.m && candidate.isFreeMass &&
+		   candidate.isDragging);
 }

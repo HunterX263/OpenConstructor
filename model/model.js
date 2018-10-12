@@ -31,6 +31,13 @@ MODEL.GravityDirections = {
 };
 Object.freeze(MODEL.GravityDirections);
 
+// Enum of mass types.
+MODEL.MassTypes = {
+	FREE: "free mass",
+	FIXED: "fixed mass"
+};
+Object.freeze(MODEL.MassTypes);
+
 // Enum for describing the last wall the model touched while auto-reversing.
 MODEL.Walls = {
     LEFT: "left",
@@ -73,6 +80,8 @@ MODEL.instance = (function()
     // -1 means it's running backwards, and 0 means it's stopped (as in manual
     // mode).
     var _waveDirection = 1;
+	// Whether the editor should place free or fixed masses in construct mode.
+	var _massType = MODEL.MassTypes.FREE;
     // The last wall the model touched (used for auto-reverse).
     var _lastWall = MODEL.Walls.UNKNOWN;
     // The mass/spring that's been selected (clicked) in the UI.
@@ -243,6 +252,14 @@ MODEL.instance = (function()
         }
         return _waveDirection;
     }
+	function __massType(massType)
+	{
+		if (massType !== undefined)
+		{
+			_massType = massType;
+		}
+		return _massType;
+	}
     function __lastWall(lastWall)
     {
         if (lastWall !== undefined)
@@ -463,6 +480,7 @@ MODEL.instance = (function()
         waveSpeed: __waveSpeed,
         waveMode: __waveMode,
         waveDirection: __waveDirection,
+		massType: __massType,
         lastWall: __lastWall,
         selectedItem: __selectedItem,
         hoveredItem: __hoveredItem,

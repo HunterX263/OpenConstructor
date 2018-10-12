@@ -71,27 +71,52 @@ MODELPANEL.create = (function(x, y, w, h)
                 color = _hoverColor;
                 circled = true;
             }
-            // draw mass
-            ctx.beginPath();
-            ctx.fillStyle = color;
-            ctx.arc(
-                x, y, massRadius,
-                0, Math.PI * 2, false
-            );
-            ctx.fill();
-            ctx.closePath();
-            // circle mass
-            if (circled)
-            {
-                ctx.beginPath();
-                ctx.strokeStyle = color;
-                ctx.arc(
-                    x, y, circleRadius,
-                    0, Math.PI * 2, false
-                );
-                ctx.stroke();
-                ctx.closePath();
-            }
+			if (mass.isFreeMass())
+			{
+				// draw mass
+				ctx.beginPath();
+				ctx.fillStyle = color;
+				ctx.arc(
+					x, y, massRadius,
+					0, Math.PI * 2, false
+				);
+				ctx.fill();
+				ctx.closePath();
+				// circle mass
+				if (circled)
+				{
+					ctx.beginPath();
+					ctx.strokeStyle = color;
+					ctx.arc(
+						x, y, circleRadius,
+						0, Math.PI * 2, false
+					);
+					ctx.stroke();
+					ctx.closePath();
+				}
+			}
+			else
+			{
+				// draw mass
+				ctx.beginPath();
+				ctx.fillStyle = color;
+				ctx.rect(x - massRadius,
+				y - massRadius, massRadius * 2,
+				massRadius * 2);
+				ctx.fill();
+				ctx.closePath();
+				// square mass
+				if (circled)
+				{
+					ctx.beginPath();
+					ctx.strokeStyle = color;
+					ctx.rect(x - circleRadius,
+					y - circleRadius, circleRadius * 2,
+					circleRadius * 2);
+					ctx.stroke();
+					ctx.closePath();
+				}
+			}
         });
     }
     // Draws the model's springs to the given drawing context (ctx).
@@ -263,11 +288,7 @@ MODELPANEL.create = (function(x, y, w, h)
                         if (MASS.isMass(MODEL.instance.selectedItem()))
                         {
                             // stop dragging
-                            // TODO:  Regardless of whether the mass was originally
-                            // free, it is converted back to a free mass here.
-                            // When real support for fixed masses is added to the
-                            // constructor, this line will need to change.
-                            MODEL.instance.selectedItem().isFreeMass(true);
+                            MODEL.instance.selectedItem().isDragging(false);
                         }
                     }
                 }
@@ -287,7 +308,7 @@ MODELPANEL.create = (function(x, y, w, h)
                     // When you're dragging a mass, the mass is temporarily
                     // converted to a fixed mass so the physics engine doesn't
                     // yank it away from you.
-                    MODEL.instance.selectedItem().isFreeMass(false);
+                    MODEL.instance.selectedItem().isDragging(true);
                 }
                 break;
         }
@@ -326,8 +347,16 @@ MODELPANEL.create = (function(x, y, w, h)
                         else
                         {
                             // create new mass
-                            var mass = MASS.create(_pixelsToMeters(exy));
-                            MODEL.instance.addMass(mass);
+                            var mass;
+							if (MODEL.instance.massType() == MODEL.MassTypes.FREE)
+							{
+								mass = MASS.create(_pixelsToMeters(exy), true);
+							}
+							else
+							{
+								mass = MASS.create(_pixelsToMeters(exy), false);
+							}
+							MODEL.instance.addMass(mass);
                             MODEL.instance.selectedItem(mass);
                         }
                     }
