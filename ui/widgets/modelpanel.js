@@ -338,7 +338,15 @@ MODELPANEL.create = (function(x, y, w, h)
                         if (MASS.isMass(MODEL.instance.selectedItem()))
                         {
                             // connect selected mass with new mass
-                            var mass = MASS.create(_pixelsToMeters(exy));
+                            var mass;
+							if (MODEL.instance.massType() == MODEL.MassTypes.FREE)
+							{
+								mass = MASS.create(_pixelsToMeters(exy), true);
+							}
+							else
+							{
+								mass = MASS.create(_pixelsToMeters(exy), false);
+							}
                             MODEL.instance.addMass(mass);
                             var spring = SPRING.create(MODEL.instance.selectedItem(), mass);
                             MODEL.instance.addSpring(spring);
