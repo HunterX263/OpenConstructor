@@ -19,9 +19,16 @@ MENUPANEL.create = (function(x, y, w, h)
         // The save button
         BUTTON.create(x, y, 64, h,
             function(mouseButton) {
-                MODEL.instance.exportModelToURL();
+                if (UI.instance.rootPanel().fileMenuOpen() == false)
+				{
+					UI.instance.rootPanel().fileMenuOpen(true);
+				}
+				else
+				{
+					UI.instance.rootPanel().fileMenuOpen(false);
+				}
             },
-            function() {return "save"}),
+            function() {return "file"}),
         // The simulation mode button
         BUTTON.create(x+64, y, (w-64)/3, h,
             function(mouseButton) {

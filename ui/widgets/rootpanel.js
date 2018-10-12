@@ -26,14 +26,20 @@ ROOTPANEL.create = (function(w, h)
     var _y = 0;
     var _w = w;
     var _h = h;
+	var _fileMenuOpen = false;
 
     // ROOTPANEL needs children in order to work.
     var _children = [
         MODELPANEL.create(64, 22, 657, 428),
-        WAVEPANEL.create(0, 22, 64, 298),
         MENUPANEL.create(0, 0, 720, 22),
-        GFKPANEL.create (0, 320, 64, 130)
     ];
+	
+	var _sidePanels = [
+		WAVEPANEL.create(0, 22, 64, 298),
+		GFKPANEL.create (0, 320, 64, 130)
+	];
+	
+	var _fileMenuPanel = FILEMENUPANEL.create(0, 22, 64, 428);
 // public
     // Accessors
     function __x(x)
@@ -68,6 +74,14 @@ ROOTPANEL.create = (function(w, h)
         }
         return _h;
     }
+	function __fileMenuOpen(fileMenuOpen)
+	{
+		if (fileMenuOpen !== undefined)
+		{
+			_fileMenuOpen = fileMenuOpen;
+		}
+		return _fileMenuOpen;
+	}
     // Draw the panel to the given drawing context (ctx).  Called once per
     // frame.
     function _draw(ctx)
@@ -76,6 +90,17 @@ ROOTPANEL.create = (function(w, h)
         _children.forEach(function(child) {
             child.draw(ctx);
         });
+		
+		if (_fileMenuOpen == true)
+		{
+			_fileMenuPanel.draw(ctx);
+		}
+		else
+		{
+			_sidePanels.forEach(function(child) {
+				child.draw(ctx);
+			});
+		}
     }
     function _signal(e, exy)
     {
@@ -83,12 +108,24 @@ ROOTPANEL.create = (function(w, h)
         _children.forEach(function(child) {
             child.signal(e, exy);
         });
+		
+		if (_fileMenuOpen == true)
+		{
+			_fileMenuPanel.signal(e, exy);
+		}
+		else
+		{
+			_sidePanels.forEach(function(child) {
+				child.signal(e, exy);
+			});
+		}
     }
     return {
         x: __x,
         y: __y,
         w: __w,
         h: __h,
+		fileMenuOpen: __fileMenuOpen,
         draw: _draw,
         signal: _signal
     };

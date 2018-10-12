@@ -86,9 +86,14 @@ UI.instance = (function()
             _nameField.value = MODEL.instance.name();
         }
     }
+	function __rootPanel()
+	{
+		return _rootpanel;
+	}
     return {
         initialize: _initialize,
-        draw: _draw
+        draw: _draw,
+		rootPanel: __rootPanel
     };
 })();
 // singleton
