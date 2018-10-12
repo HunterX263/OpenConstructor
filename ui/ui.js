@@ -45,6 +45,7 @@ UI.instance = (function()
     {
         // grab a reference to the canvas so we have someplace to draw
         _viewport = document.getElementById('viewport');
+		_viewport.onselectstart = function() { return false; }
         _ctx = _viewport.getContext('2d');
         _canvasTopLeft = VECTOR.create(_viewport.getBoundingClientRect()["left"],
                                        _viewport.getBoundingClientRect()["top"]);
