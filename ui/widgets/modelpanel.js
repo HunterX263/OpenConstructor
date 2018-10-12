@@ -283,13 +283,10 @@ MODELPANEL.create = (function(x, y, w, h)
                 if (e.button == 0)
                 {
                     _mouseDown = false;
-                    if (UTIL.inBounds(exy.x(), exy.y(), _x, _y, _w, _h))
+                    if (MASS.isMass(MODEL.instance.selectedItem()))
                     {
-                        if (MASS.isMass(MODEL.instance.selectedItem()))
-                        {
-                            // stop dragging
-                            MODEL.instance.selectedItem().isDragging(false);
-                        }
+                        // stop dragging
+                        MODEL.instance.selectedItem().isDragging(false);
                     }
                 }
                 break;

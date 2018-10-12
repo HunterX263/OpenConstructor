@@ -66,8 +66,8 @@ UI.instance = (function()
                                            _viewport.getBoundingClientRect()["top"]);
         }
         _viewport.onmousedown = genericHandler;
-        _viewport.onmousemove = genericHandler;
-        _viewport.onmouseup = genericHandler;
+        window.onmousemove = genericHandler;
+        window.onmouseup = genericHandler;
         window.onscroll = scrollHandler;
         _authorField.oninput = _updateAuthor;
         _nameField.oninput = _updateModelname;
