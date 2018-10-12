@@ -65,7 +65,8 @@ BUTTON.create = (function(x, y, w, h, clickFn, captionFn)
             ctx.font = "16px sans-serif"
             ctx.fillStyle = "#000000";
             ctx.textAlign = "center";
-            ctx.fillText(_captionFn(), _x + _w/2, _y + _h/2 + 16/2);
+			ctx.textBaseline = "middle";
+            ctx.fillText(_captionFn(), _x + _w/2, _y + _h/2);
         }
     }
     // Called by a mouse event (e) at client coordinates (exy).
