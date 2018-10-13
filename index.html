@@ -4,52 +4,52 @@
     <!-- Document info -->
     <title>openconstructor</title>
     <meta charset="UTF-8">
-    <!-- Embedded CSS -->
-    <style>
-        body {
-            background-color: #FFFFFF;
-            font-family: Verdana, sans-serif;
-            font-size: 16px;
-        }
-        span {
-            font-family: Verdana, sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        input {
-            background-color: #FFFFFF;
-            /*border: none;*/
-            border-style: none none solid none;
-            font-family: Verdana, sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        canvas {
-            background-color: #FFFFFF;
-            border: 1px solid #000000;
-        }
-    </style>
+	<link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!-- The canvas that the constructor will run in -->
         <!-- 720x450 - original SC canvas -->
         <!-- 657x428 - original SC model area -->
-        <span><span style="color:#6ab5ff">open</span>constructor</span>
-        <br />
+		<div class="strong">
+			<table style="width: 100%; border-spacing: 0px;">
+				<tr>
+					<td>
+						<span><span style="color:#0099ff">open</span>constructor</span>
+					</td>
+					<td style="text-align: right;">
+						<input id="nameField" class="strong" style="width:40%; text-align:right;" type="text" value="">
+						<span style="color: #0099ff;">by</span>
+						<input id="authorField" class="strong" style="width:40%; text-align:left;" type="text" value="">
+					</td>
+				</tr>
+			</table>
+		</div>
         <canvas
             id="viewport"
             oncontextmenu="return false;"
             width="720" height="450">
         </canvas>
-        <br />
-        <div style="position: absolute; width: 720px; text-align: center">
-            <input id="nameField" style="width:45%; text-align:right" type="text" value="">
-            <span style="color: #6ab5ff">by</span>
-            <input id="authorField" style="width:45%; text-align:left" type="text" value="">
-            <br />
-            <a href="https://web.archive.org/web/20050304011150/http://www.sodaplay.com:80/constructor/how/build.htm">how to build your own</a><br />
-            <a href="https://github.com/HunterX263/OpenConstructor">OpenConstructor project page</a>
-            <p>To save a model, first give it a name by typing in the textboxes below the constructor window.  Click the "save" button at top left, then copy the URL and send it to your friends!</p>
+        <div>
+			<table style="width: 100%; border-spacing: 0px;">
+				<tr>
+					<td>
+						<a class="blue" target="_blank" href="https://web.archive.org/web/20050304011150/http://www.sodaplay.com:80/constructor/how/build.htm">
+							<img src="./img/b31_09f.gif">
+							how to build your own
+						</a>
+					</td>
+					<td>
+						<a class="blue" target="_blank" href="https://github.com/HunterX263/OpenConstructor">
+							<img src="./img/b31_09f.gif">
+							github project page
+						</a>
+					</td>
+				</tr>
+			</table>
+            <p>
+				<img src="./img/b10_09f.gif">
+				to save a model, first give it a name by typing in the textboxes above the constructor window.  click the "save" button at top left, then copy the url and send it to your friends!
+			</p>
         </div>
         <!-- The files making up the constructor, in dependency order -->
         <script type="text/javascript" src="common/util.js"></script>

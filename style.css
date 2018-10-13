@@ -1,0 +1,84 @@
+<style>
+
+body {
+	;
+}
+
+body.white{
+	background : #ffffff;
+	margin: 0px;
+ 	padding: 0px;
+}
+
+
+div {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight : normal;
+	width: 720px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+div.white {
+	color: #ffffff;
+}
+
+div.grey {
+	color: #333333;
+}
+
+div.blue {
+	color: #0099ff;
+}
+
+a {
+	text-decoration: none;
+}
+	
+a.white {
+	color: #ffffff;
+}
+
+a.white:hover { 
+	color: #0099ff;
+}
+
+a.grey {
+	color: #C0C0C0;
+}
+
+a.grey:hover { 
+	color: #0099ff;
+}
+
+a.blue {
+	color: #0099ff;
+}
+
+a.blueblack {
+	color: #0099ff;
+}
+
+a.blueblack:hover { 
+	color: #000000;
+}
+
+.strong {
+    font-family : Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+	font-weight: bold;
+}
+
+input {
+    background-color: #FFFFFF;
+    /*border: none;*/
+    border-style: none none solid none;
+}
+
+canvas {
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+</style>
