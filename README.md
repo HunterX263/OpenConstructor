@@ -1,5 +1,5 @@
 # Synopsis
-OpenConstructor is an HTML5-based physics simulation for building and animating springy creations. It is an open-source reimplementation of the [sodaplay](https://web-beta.archive.org/web/20050213021801/http://www.sodaplay.com:80/index.htm) browser game released by [soda creative ltd](http://soda.co.uk/) in 2000.
+OpenConstructor is an HTML5-based physics simulation for building and animating springy creations. It is an open-source reimplementation of the [sodaplay](http://web.archive.org/web/20040612193032/http://www.sodaplay.com:80/index.htm) browser game released by [soda creative ltd](http://soda.co.uk/) in 2000.
 
 # For users
 OpenConstructor is [hosted at GitHub Pages](https://hunterx263.github.io/OpenConstructor/), so if you want to play with it, that's the place to go.
@@ -48,4 +48,4 @@ The original repository can be found at [https://github.com/OpenConstructor/Open
 The code itself took a lot of ahem, "inspiration" from [DannickFox/phyzzy-js](https://github.com/DannickFox/phyzzy-js) and [cactorium/spring-crabs](https://github.com/cactorium/spring-crabs). I would have gotten nowhere if I didn't have their working examples to dissect (and occasionally crib from). Thanks guys!
 
 # License
-Do whatever you want!  See LICENSE for details.
+All new content in this project is currently unlicensed (see LICENSE for details). Some text/images/design elements have been imported from archives of the old Sodaplay website and, where applicable, remain the property of their respective owners.

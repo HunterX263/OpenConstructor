@@ -62,7 +62,7 @@ BUTTON.create = (function(x, y, w, h, clickFn, captionFn)
         UTIL.drawBoundingRectangle(ctx, _x, _y, _w, _h);
         if (_captionFn !== undefined)
         {
-            ctx.font = "16px sans-serif"
+            ctx.font = "14px Verdana, Arial, Helvetica, sans-serif"
             ctx.fillStyle = "#000000";
             ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
