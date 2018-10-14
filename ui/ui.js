@@ -65,7 +65,7 @@ UI.instance = (function()
             _canvasTopLeft = VECTOR.create(_viewport.getBoundingClientRect()["left"],
                                            _viewport.getBoundingClientRect()["top"]);
         }
-        _viewport.onmousedown = genericHandler;
+        window.onmousedown = genericHandler;
         window.onmousemove = genericHandler;
         window.onmouseup = genericHandler;
         window.onscroll = scrollHandler;

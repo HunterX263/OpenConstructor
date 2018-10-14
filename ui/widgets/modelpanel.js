@@ -266,17 +266,14 @@ MODELPANEL.create = (function(x, y, w, h)
         switch (e.type)
         {
             case "mousedown":
-                if (UTIL.inBounds(exy.x(), exy.y(), _x, _y, _w, _h))
+                if (e.button == 0)
                 {
-                    if (e.button == 0)
-                    {
-                        _mouseDown = true;
-                    }
-                    else
-                    {
-                        // deselect on right-click
-                        MODEL.instance.selectedItem(null);
-                    }
+                    _mouseDown = true;
+                }
+                else
+                {
+                    // deselect on right-click
+                    MODEL.instance.selectedItem(null);
                 }
                 break;
             case "mouseup":
@@ -314,13 +311,10 @@ MODELPANEL.create = (function(x, y, w, h)
         switch (MODEL.instance.mode())
         {
         case MODEL.Modes.SIMULATE:
-            if (UTIL.inBounds(exy.x(), exy.y(), _x, _y, _w, _h))
+            if (e.type === "mousedown" && e.button === 0)
             {
-                if (e.type === "mousedown" && e.button === 0)
-                {
-                    // select clicked object
-                    MODEL.instance.selectedItem(_getNearestItem(exy, _mouseSlopPx) || null);
-                }
+                // select clicked object
+                MODEL.instance.selectedItem(_getNearestItem(exy, _mouseSlopPx) || null);
             }
             break;
         case MODEL.Modes.CONSTRUCT:
