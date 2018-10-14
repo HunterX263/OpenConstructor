@@ -84,7 +84,7 @@ PHYSICS.instance = (function()
         MODEL.instance.masses.forEach(function(mass) {
             // F=ma -> a=F/m
             // Euler's method
-            if (mass.isFreeMass() && mass.isDragging() == false)
+            if (mass.free == true && mass.isDragging() == false)
             {
                 // The order is important.  We must update each accumulator
                 // using the value calculated last frame (not this frame).

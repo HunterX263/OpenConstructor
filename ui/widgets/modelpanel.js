@@ -71,7 +71,7 @@ MODELPANEL.create = (function(x, y, w, h)
                 color = _hoverColor;
                 circled = true;
             }
-			if (mass.isFreeMass())
+			if (mass.free == true)
 			{
 				// draw mass
 				ctx.beginPath();

@@ -30,14 +30,6 @@ MASS.create = (function(s, isFreeMass)
     {
         return _m;
     }
-    function _isFreeMass(isFreeMass)
-    {
-        if (isFreeMass !== undefined)
-        {
-            _free = isFreeMass;
-        }
-        return _free;
-    }
 	function _isDragging(isDragging)
 	{
 		if (isDragging !== undefined)
@@ -52,8 +44,8 @@ MASS.create = (function(s, isFreeMass)
         a: _a,
         f: _f,
         m: __m,
-        isFreeMass: _isFreeMass,
-		isDragging: _isDragging
+		free: _free,
+        isDragging: _isDragging
     }
 });
 
@@ -66,6 +58,6 @@ MASS.isMass = function(candidate)
     // "!!" is an ugly hack that coerces the return value to true or false.
     return (candidate !== undefined) && (candidate !== null) &&
            !!(candidate.s && candidate.v && candidate.a && candidate.v &&
-           candidate.f && candidate.m && candidate.isFreeMass &&
+           candidate.f && candidate.m && (candidate.free !== undefined) &&
 		   candidate.isDragging);
 }

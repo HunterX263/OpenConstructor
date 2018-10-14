@@ -347,7 +347,7 @@ MODEL.instance = (function()
         _waveMode = myJson.waveMode;
         _waveDirection = myJson.waveDirection;
         myJson.masses.forEach(function(jMass) {
-            var myMass = MASS.create(VECTOR.create(jMass.s.x, jMass.s.y));
+            var myMass = MASS.create(VECTOR.create(jMass.s.x, jMass.s.y), jMass.free);
             myMass.v.x(jMass.v.x);
             myMass.v.y(jMass.v.y);
             myMass.a.x(jMass.a.x);
