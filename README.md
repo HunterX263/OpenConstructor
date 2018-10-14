@@ -41,7 +41,7 @@ Contributions are most welcome. There's a long way to go.
 * [Fork and submit a pull request](http://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/)!
 
 # Credits
-Of course, OpenConstructor could not have existed without [ed burton](http://web.archive.org/web/20100429234043/http://www.acmi.net.au/soda.htm), [soda creative ltd](http://soda.co.uk/) and their original (and incomparable) [sodaplay](https://web-beta.archive.org/web/20050213021801/http://www.sodaplay.com:80/index.htm). Long live the spirit of creative play!
+Of course, OpenConstructor could not have existed without [ed burton](http://web.archive.org/web/20100429234043/http://www.acmi.net.au/soda.htm), [soda creative ltd](http://soda.co.uk/) and their original (and incomparable) [sodaplay](http://web.archive.org/web/20040612193032/http://www.sodaplay.com:80/index.htm). Long live the spirit of creative play!
 
 The original repository can be found at [https://github.com/OpenConstructor/OpenConstructor](https://github.com/OpenConstructor/OpenConstructor) and was produced by [Peter Fidelman](https://github.com/PeterFidelman), [jmpavlick](https://github.com/jmpavlick) and [cactorium](https://github.com/cactorium).
 
