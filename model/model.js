@@ -310,7 +310,7 @@ MODEL.instance = (function()
                                "waveMode": _waveMode,
                                "waveDirection": _waveDirection,
                                "masses": MODEL.instance.masses,
-                               "springs": MODEL.instance.springs});
+                               "springs": MODEL.instance.springs}, null, "	");
     }
     // Appends the saved model state to the window URL, as base64-encoded JSON
     // stored in a fragment identifier.  This lets you "save the model" by
@@ -323,12 +323,22 @@ MODEL.instance = (function()
         var exportStr = _exportModel();
         window.location.href = window.location.href.split("#")[0] + "#" + btoa(exportStr);
     }
+	// Download the saved model to a .json file
+	function _exportModelToFile()
+	{
+		var exportStr = _exportModel();
+	
+		var a = document.createElement("a");
+		var file = new Blob([exportStr], {type: "text/plain"});
+		a.href = URL.createObjectURL(file);
+		a.download = _name + ".json";
+		a.click();
+	}
     // Restores model from a JSON string (see _exportModel).
     function _importModel(jstr)
     {
         // Clear any masses and springs in the current model
-        _masses.length = 0;
-        _springs.length = 0;
+        _clearModel();
         // Restore model from string
         var myJson = JSON.parse(jstr);
         _name = myJson.name;
@@ -366,6 +376,51 @@ MODEL.instance = (function()
         var importStr = atob(window.location.href.split("#")[1]);
         _importModel(importStr);
     }
+	// Rosters model from a user specified JSON file
+	function _importModelFromFile()
+	{
+		var reader = new FileReader();
+		reader.onload = function(event)
+		{
+			var importStr = event.target.result;
+			_importModel(importStr);
+		};
+	
+		var i = document.createElement("input");
+		i.type = "file";
+		i.onchange = function(event)
+		{
+			reader.readAsText(event.target.files[0]);
+		}
+		
+		i.click();
+	}
+	// Reset the model to an empty state (replace later with multiple model objects rather than an instance?)
+	function _clearModel()
+	{
+		_name = "untitled";
+		_author = "yourname";
+		_mode = MODEL.Modes.SIMULATE;
+		_g = -0.1;
+		_f = 0.1;
+		_k = 6;
+		_width = 5.475;
+		_height = 3.57;
+		_gravityDirection = MODEL.GravityDirections.DOWN;
+		_surfaceFriction = 0.7;
+		_surfaceReflection = -0.75;
+		_waveAmplitude = 0.5;
+		_wavePhase = 0;
+		_waveSpeed = 0.1;
+		_waveMode = MODEL.WaveModes.AUTOREVERSE;
+		_waveDirection = 1;
+		_massType = MODEL.MassTypes.FREE;
+		_lastWall = MODEL.Walls.UNKNOWN;
+		_selectedItem = undefined;
+		_hoveredItem = undefined;
+		_masses.length = 0;
+		_springs.length = 0;
+	}
     // Add a mass into the model (takes a reference to an existing MASS that is
     // not yet part of the model).
     function _addMass(m)
@@ -488,8 +543,11 @@ MODEL.instance = (function()
         springs: _springs,
         exportModel: _exportModel,
         exportModelToURL: _exportModelToURL,
+		exportModelToFile: _exportModelToFile,
         importModel: _importModel,
         importModelFromURL: _importModelFromURL,
+		importModelFromFile: _importModelFromFile,
+		clearModel: _clearModel,
         addMass: _addMass,
         removeMass: _removeMass,
         addSpring: _addSpring,

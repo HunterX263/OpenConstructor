@@ -19,30 +19,31 @@ FILEMENUPANEL.create = (function(x, y, w, h)
 		// The new button
         BUTTON.create(x, y, w, 22,
             function(mouseButton) {
-                MODEL.instance.masses.length = 0;
-				MODEL.instance.springs.length = 0;
-				
-				// TODO: Reset sliders?
-				
+                MODEL.instance.clearModel();
 				UI.instance.rootPanel().fileMenuOpen(false);
             },
             function() {return "new"}),
-        // The save button
-        BUTTON.create(x, y + 22, w, 22,
+		// The load button
+		BUTTON.create(x, y + 22, w, 22,
             function(mouseButton) {
-                MODEL.instance.exportModelToURL();
-				if (UI.instance.rootPanel().fileMenuOpen() == false)
-				{
-					UI.instance.rootPanel().fileMenuOpen(true);
-				}
-				else
-				{
-					UI.instance.rootPanel().fileMenuOpen(false);
-				}
-				
+                MODEL.instance.importModelFromFile();
 				UI.instance.rootPanel().fileMenuOpen(false);
             },
-            function() {return "save"})
+            function() {return "load"}),
+		// The save button
+		BUTTON.create(x, y + (22 * 2), w, 22,
+            function(mouseButton) {
+                MODEL.instance.exportModelToFile();
+				UI.instance.rootPanel().fileMenuOpen(false);
+            },
+            function() {return "save"}),
+        // The share button
+        BUTTON.create(x, y + (22 * 3), w, 22,
+            function(mouseButton) {
+                MODEL.instance.exportModelToURL();
+				UI.instance.rootPanel().fileMenuOpen(false);
+            },
+            function() {return "share"})
     ];
 // public
     // Accessors
