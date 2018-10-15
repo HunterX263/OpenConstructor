@@ -229,6 +229,31 @@ WAVEPANEL.create = (function(x, y, w, h)
         _children.forEach(function(child) {
             child.draw(ctx);
         });
+		// Draw guidelines
+		ctx.beginPath();
+		ctx.strokeStyle = "#BBBBBB";
+		ctx.moveTo(_x + (_w/2), _y);
+		ctx.lineTo(_x + (_w/2), _y + _h);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.strokeStyle = "#BBBBBB";
+		ctx.moveTo(_x + _w - 10, _y + (_h - 42) * 0.25);
+		ctx.lineTo(_x + _w, _y + (_h - 42) * 0.25);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.strokeStyle = "#BBBBBB";
+		ctx.moveTo(_x + _w - 10, _y + (_h - 42) * 0.5);
+		ctx.lineTo(_x + _w, _y + (_h - 42) * 0.5);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.strokeStyle = "#BBBBBB";
+		ctx.moveTo(_x + _w - 10, _y + (_h - 42) * 0.75);
+		ctx.lineTo(_x + _w, _y + (_h - 42) * 0.75);
+		ctx.stroke();
+		ctx.closePath();
         // Draw rest of self
         _drawSineWave(ctx);
         _drawMuscleBars(ctx);
