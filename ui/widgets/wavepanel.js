@@ -286,7 +286,7 @@ WAVEPANEL.create = (function(x, y, w, h)
                     MODEL.instance.selectedItem().amplitude(amplitude);
                     MODEL.instance.selectedItem().phase(phase);
                 }
-                else if (UTIL.inBounds(exy.x(), exy.y(), _x+10, _y, _w-20, _h))
+                else if (UTIL.inBounds(exy.x(), exy.y(), _x+10, _y, _w-20, _h-42))
                 {
                     // dragging empty space:  adjust wave amplitude
                     if (amplitude <= 0)
